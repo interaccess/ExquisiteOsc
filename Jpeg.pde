@@ -1,32 +1,41 @@
+// https://github.com/torbjornlunde/processing-experiments
 // https://www.processing.org/discourse/beta/num_1215762729.html
 // https://forum.processing.org/one/topic/converting-bufferedimage-to-pimage.html
 
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriter;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.stream.MemoryCacheImageOutputStream;
+import javax.imageio.IIOImage;
+import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
 
-PImage fromJpeg(byte[] jpegBytes) {
-  BufferedImage bImg = null;
-  ByteArrayInputStream bis= new ByteArrayInputStream(jpegBytes);
+byte[] encodeJpeg(PImage img, float compression) throws IOException {
+  ByteArrayOutputStream baos = new ByteArrayOutputStream();
+  
+  ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();
+  ImageWriteParam param = writer.getDefaultWriteParam();
+  param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+  param.setCompressionQuality(compression);
 
-  try {
-    bImg = ImageIO.read(bis);
-  } catch (Exception e) {
-    //
-  } finally {
-    try {
-      bis.close();
-    } catch (Exception e) {
-      //
-    }
-  }
+  // ImageIO.write((BufferedImage) img.getNative(), "jpg", baos);
+  writer.setOutput(new MemoryCacheImageOutputStream(baos));
 
-  return bImageToPImage(bImg);
+  writer.write(null, new IIOImage((BufferedImage) img.getNative(), null, null), param);
+
+  return baos.toByteArray();
 }
 
-PImage bImageToPImage(BufferedImage bImg) {
-  PImage img=new PImage(bImg.getWidth(), bImg.getHeight(), PConstants.ARGB);
-  bImg.getRGB(0, 0, img.width, img.height, img.pixels, 0, img.width);
+byte[] encodeJpeg(PImage img) throws IOException {
+  return encodeJpeg(img, 0.5F);
+}
+
+PImage decodeJpeg(byte[] imgbytes) throws IOException, NullPointerException {
+  BufferedImage imgbuf = ImageIO.read(new ByteArrayInputStream(imgbytes));
+  PImage img = new PImage(imgbuf.getWidth(), imgbuf.getHeight(), RGB);
+  imgbuf.getRGB(0, 0, img.width, img.height, img.pixels, 0, img.width);
   img.updatePixels();
-  return img;
+
+  return img; 
 }

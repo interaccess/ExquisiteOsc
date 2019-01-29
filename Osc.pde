@@ -1,12 +1,12 @@
 import oscP5.*;
 import netP5.*;
 
-byte[] videoBytes;
+byte[] sendBytes = null;
+byte[] receiveBytes = null;
 
 String ipNumber = "127.0.0.1";
-int sendPort = 9998;
+int sendPort = 7111;
 int receivePort = 7110;
-int datagramSize = 100000;
 
 OscP5 oscP5;
 NetAddress myRemoteLocation;
@@ -14,17 +14,30 @@ NetAddress myRemoteLocation;
 void oscSetup() {  
   OscProperties op = new OscProperties();
   op.setListeningPort(receivePort);
-  op.setDatagramSize(datagramSize);
-  oscP5 = new OscP5(this, op);
+  op.setDatagramSize(100000);
   
-  myRemoteLocation = new NetAddress(ipNumber, sendPort);
+  oscP5 = new OscP5(this, op);
+  myRemoteLocation = new NetAddress(ipNumber, sendPort);  
 }
 
 // Receive message example
 void oscEvent(OscMessage msg) {
-  if (msg.checkAddrPattern("/video") && msg.checkTypetag("sb")) {
+  if (msg.checkAddrPattern("/video") && msg.checkTypetag("b")) {
     
-    videoBytes = msg.get(1).blobValue();
+    receiveBytes = msg.get(0).blobValue();
 
   }
+}
+
+void oscSend() {
+  try {
+    sendBytes = encodeJpeg(sendGfx.get());
+  } catch (Exception e) { }
+    
+  OscMessage msg;
+  msg = new OscMessage("/video");
+  msg.add(sendBytes);
+  try {
+    oscP5.send(msg, myRemoteLocation);
+  } catch (Exception e) { }
 }
