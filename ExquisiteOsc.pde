@@ -1,9 +1,13 @@
 PGraphics receiveGfx;
 PGraphics sendGfx;
 color fillColor;
+boolean doRecord = false;
+int recordInterval = 2000;
+int frameCounter = 0;
+int markTime = 0;
 
 void setup() {
-  size(640, 480, P2D);
+  size(960, 540, P2D);
   oscSetup();
   
   receiveGfx = createGraphics(width, height, P2D);
@@ -34,7 +38,8 @@ void draw() {
   }
   image(receiveGfx, 0, 0, width, height);
   
-  // ~ ~ ~ ~ ~
+  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
   
   if (mousePressed) {
     sendGfx.beginDraw();
@@ -48,7 +53,22 @@ void draw() {
     if (alwaysSend) oscSend();
   }
   
+  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+
   image(sendGfx, 0, 0, width, height);
   
+  if (doRecord) {
+    if (millis() > markTime + recordInterval) {
+      markTime = millis();
+      saveFrame("render/frame_" + zeroPadding(frameCounter, 99999) + ".jpg");
+      frameCounter++;
+    }
+  }
   surface.setTitle("" + frameRate);  
+}
+
+String zeroPadding(int _val, int _maxVal){
+  String q = ""+_maxVal;
+  return nf(_val,q.length());
 }
