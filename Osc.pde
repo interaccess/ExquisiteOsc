@@ -5,8 +5,8 @@ byte[] sendBytes = null;
 byte[] receiveBytes = null;
 
 String ipNumber = "127.0.0.1";
-int sendPort = 7111;
-int receivePort = 7110;
+int sendPort = 7110;
+int receivePort = 7111;
 
 OscP5 oscP5;
 NetAddress myRemoteLocation;

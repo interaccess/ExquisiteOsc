@@ -27,12 +27,12 @@ void draw() {
   if (receiveBytes != null) {
     try {
       receiveGfx.beginDraw();
-      receiveGfx.image(decodeJpeg(receiveBytes), 0, 0);
+      receiveGfx.image(decodeJpeg(receiveBytes), 0, 0, width, height);
       receiveGfx.endDraw();
       receiveBytes = null;
     } catch (Exception e) { }
   }
-  image(receiveGfx, 0, 0);
+  image(receiveGfx, 0, 0, width, height);
   
   // ~ ~ ~ ~ ~
   
@@ -48,7 +48,7 @@ void draw() {
     if (alwaysSend) oscSend();
   }
   
-  image(sendGfx, 0, 0);
+  image(sendGfx, 0, 0, width, height);
   
   surface.setTitle("" + frameRate);  
 }
