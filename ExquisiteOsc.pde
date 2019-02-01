@@ -1,10 +1,6 @@
 PGraphics receiveGfx;
 PGraphics sendGfx;
 color fillColor;
-boolean doRecord = false;
-int recordInterval = 2000;
-int frameCounter = 0;
-int markTime = 0;
 
 void setup() {
   size(960, 540, P2D);
@@ -28,15 +24,7 @@ void draw() {
   background(0);
   blendMode(ADD);
 
-  if (receiveBytes != null) {
-    try {
-      receiveGfx.beginDraw();
-      receiveGfx.image(decodeJpeg(receiveBytes), 0, 0, width, height);
-      receiveGfx.endDraw();
-      receiveBytes = null;
-    } catch (Exception e) { }
-  }
-  image(receiveGfx, 0, 0, width, height);
+  drawReceived();
   
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
@@ -50,7 +38,7 @@ void draw() {
     sendGfx.strokeWeight(2);
     sendGfx.line(mouseX, mouseY, pmouseX, pmouseY);
     sendGfx.endDraw();
-    if (alwaysSend) oscSend();
+    oscSend();
   }
   
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
@@ -58,17 +46,19 @@ void draw() {
 
   image(sendGfx, 0, 0, width, height);
   
-  if (doRecord) {
-    if (millis() > markTime + recordInterval) {
-      markTime = millis();
-      saveFrame("render/frame_" + zeroPadding(frameCounter, 99999) + ".jpg");
-      frameCounter++;
-    }
-  }
+  if (doRecord) screenShot();
+    
   surface.setTitle("" + frameRate);  
 }
 
-String zeroPadding(int _val, int _maxVal){
-  String q = ""+_maxVal;
-  return nf(_val,q.length());
+void drawReceived() {
+if (receiveBytes != null) {
+    try {
+      receiveGfx.beginDraw();
+      receiveGfx.image(decodeJpeg(receiveBytes), 0, 0, width, height);
+      receiveGfx.endDraw();
+      receiveBytes = null;
+    } catch (Exception e) { }
+  }
+  image(receiveGfx, 0, 0, width, height);
 }

@@ -1,13 +1,7 @@
-boolean alwaysSend = true;
-
 void keyPressed() {
-  if (key == ' ') {
+  if (key == ' ') { // clear
     sendGfx.beginDraw();
     sendGfx.background(0);
     sendGfx.endDraw();
   }
-}
-
-void mouseReleased() {
-  if (!alwaysSend) oscSend();
 }
