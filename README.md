@@ -8,7 +8,7 @@ This is where the main setup() and draw() functions live. Most of your drawing w
 #### Controls.pde
 If you want to add keyboard and mouse controls, you can put them here.
 
-#### The rest of the sketch:
+##### The rest of the sketch:
 
 ##### Jpeg.pde
 Encodes and decodes jpeg images to send over the network.
