@@ -2,10 +2,14 @@ PGraphics receiveGfx;
 PGraphics sendGfx;
 color fillColor;
 Settings settings;
+int sW = 960;
+int sH = 540;
 
 void setup() {
-  size(960, 540, P2D);
+  size(50, 50, P2D);
   settings = new Settings("settings.txt");
+  surface.setSize(sW, sH);
+  
   oscSetup();
   
   receiveGfx = createGraphics(width, height, P2D);
@@ -18,7 +22,7 @@ void setup() {
   sendGfx.background(0);
   sendGfx.endDraw();
   
-  fillColor = color(127 + random(127), 127 + random(127), 127 + random(127), 127);
+  fillColor = randomColor();
 }
 
 void draw() {
@@ -33,7 +37,7 @@ void draw() {
   
   if (mousePressed) {
     sendGfx.beginDraw();
-    sendGfx.fill(fillColor);
+    sendGfx.fill(fillColor, 127);
     sendGfx.noStroke();
     sendGfx.ellipse(mouseX, mouseY, 10, 10);
     sendGfx.stroke(fillColor);
@@ -48,7 +52,7 @@ void draw() {
 
   image(sendGfx, 0, 0, width, height);
   
-  if (doRecord) screenShot();
+  if (doRecord) screenShot(false);
     
   surface.setTitle("" + frameRate);  
 }
@@ -63,4 +67,8 @@ if (receiveBytes != null) {
     } catch (Exception e) { }
   }
   image(receiveGfx, 0, 0, width, height);
+}
+
+color randomColor() {
+    return color(127 + random(127), 127 + random(127), 127 + random(127), 127);
 }

@@ -9,3 +9,9 @@ Receive Port
 
 Screen Capture
 false
+
+Screen Width
+960
+
+Screen Height
+540

@@ -1,7 +1,16 @@
 void keyPressed() {
-  if (key == ' ') { // clear
-    sendGfx.beginDraw();
-    sendGfx.background(0);
-    sendGfx.endDraw();
+  switch(key) {
+    case('n'): // new
+      sendGfx.beginDraw();
+      sendGfx.background(0);
+      sendGfx.endDraw();
+      fillColor = randomColor();
+      break;
+    case('c'): // color
+      fillColor = randomColor();
+      break;
+    case('s'): // screencap
+      screenShot(true);
+      break;
   }
 }

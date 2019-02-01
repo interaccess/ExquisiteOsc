@@ -5,8 +5,8 @@ int markTime = 0;
 String fileName = "frame";
 String fileType = "jpg";
 
-void screenShot() {
-  if (millis() > markTime + recordInterval) {
+void screenShot(boolean trigger) {
+  if (trigger || millis() > markTime + recordInterval) {
     markTime = millis();
     saveFrame("render/" + fileName + "_" + zeroPadding(frameCounter, 99999) + "." + fileType);
     frameCounter++;
