@@ -1,9 +1,11 @@
 PGraphics receiveGfx;
 PGraphics sendGfx;
 color fillColor;
+Settings settings;
 
 void setup() {
   size(960, 540, P2D);
+  settings = new Settings("settings.txt");
   oscSetup();
   
   receiveGfx = createGraphics(width, height, P2D);
