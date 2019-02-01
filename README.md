@@ -1,7 +1,5 @@
 # ExquisiteOsc
 
-### Parts of the sketch you'll use:
-
 #### ExquisiteOsc.pde
 This is where the main setup() and draw() functions live. Most of your drawing work can be done here.
 
