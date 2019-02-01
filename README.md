@@ -8,6 +8,7 @@ This is where the main setup() and draw() functions live. Most of your drawing w
 #### Controls.pde
 If you want to add keyboard and mouse controls, you can put them here.
 
+<i>
 ### The rest of the sketch:
 
 #### Jpeg.pde
@@ -18,3 +19,4 @@ Sends jpeg images over OSC, a popular networking protocol for art and music.
 
 #### Record.pde
 Records screenshots you can assemble into an animation.
+</i>
