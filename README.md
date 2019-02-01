@@ -8,13 +8,13 @@ This is where the main setup() and draw() functions live. Most of your drawing w
 #### Controls.pde
 If you want to add keyboard and mouse controls, you can put them here.
 
-### The rest of the sketch:
+#### The rest of the sketch:
 
-#### _Jpeg.pde
-Encodes and decodes jpeg images to send over the network._
+##### Jpeg.pde
+Encodes and decodes jpeg images to send over the network.
 
-#### _Osc.pde
-Sends jpeg images over OSC, a popular networking protocol for art and music._
+##### Osc.pde
+Sends jpeg images over OSC, a popular networking protocol for art and music.
 
-#### _Record.pde
-Records screenshots you can assemble into an animation._
+##### Record.pde
+Records screenshots you can assemble into an animation.
