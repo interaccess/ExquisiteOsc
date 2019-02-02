@@ -9,6 +9,7 @@ If you want to add <b>keyboard and mouse controls</b>, you can put them here.
 #### settings.txt
 You'll need to change your <b>port and ip numbers</b> here in order to set up OSC networking.
 
+<img src="./docs/images/test.jpg">
 
 #### The rest of the sketch:
 
