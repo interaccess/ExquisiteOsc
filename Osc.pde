@@ -14,7 +14,7 @@ NetAddress myRemoteLocation;
 void oscSetup() {  
   OscProperties op = new OscProperties();
   op.setListeningPort(receivePort);
-  op.setDatagramSize(100000);
+  op.setDatagramSize(1000000);
   
   oscP5 = new OscP5(this, op);
   myRemoteLocation = new NetAddress(ipNumber, sendPort);  

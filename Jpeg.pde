@@ -11,6 +11,8 @@ import javax.imageio.IIOImage;
 import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
 
+float jpegCompressionLevel = 0.5;
+
 byte[] encodeJpeg(PImage img, float compression) throws IOException {
   ByteArrayOutputStream baos = new ByteArrayOutputStream();
   
@@ -28,7 +30,7 @@ byte[] encodeJpeg(PImage img, float compression) throws IOException {
 }
 
 byte[] encodeJpeg(PImage img) throws IOException {
-  return encodeJpeg(img, 0.5F);
+  return encodeJpeg(img, jpegCompressionLevel);
 }
 
 PImage decodeJpeg(byte[] imgbytes) throws IOException, NullPointerException {

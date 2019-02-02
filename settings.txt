@@ -7,7 +7,7 @@ Send Port
 Receive Port
 7111
 
-Screen Capture
+Auto Screen Capture
 false
 
 Screen Width
@@ -15,3 +15,9 @@ Screen Width
 
 Screen Height
 540
+
+Scale Factor
+2
+
+Image Compression
+0.3

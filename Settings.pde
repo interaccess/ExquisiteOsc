@@ -9,9 +9,11 @@ class Settings {
         if (data[i].equals("IP Address")) ipNumber = setString(data[i+1]);
         if (data[i].equals("Send Port")) sendPort = setInt(data[i+1]);
         if (data[i].equals("Receive Port")) receivePort = setInt(data[i+1]);
-        if (data[i].equals("Screen Capture")) doRecord = setBoolean(data[i+1]);
+        if (data[i].equals("Auto Screen Capture")) doRecord = setBoolean(data[i+1]);
         if (data[i].equals("Screen Width")) sW = setInt(data[i+1]);
         if (data[i].equals("Screen Height")) sH = setInt(data[i+1]);
+        if (data[i].equals("Scale Factor")) scaleFactor = setInt(data[i+1]);
+        if (data[i].equals("Image Compression")) jpegCompressionLevel = setFloat(data[i+1]);
       }
     } catch(Exception e) {
       println("Couldn't load settings file. Using defaults.");

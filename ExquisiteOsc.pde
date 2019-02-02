@@ -4,6 +4,7 @@ color fillColor;
 Settings settings;
 int sW = 960;
 int sH = 540;
+int scaleFactor = 2;
 
 void setup() {
   size(50, 50, P2D);
@@ -17,7 +18,7 @@ void setup() {
   receiveGfx.background(0);
   receiveGfx.endDraw();
   
-  sendGfx = createGraphics(width, height, P2D);
+  sendGfx = createGraphics(width/scaleFactor, height/scaleFactor, P2D);
   sendGfx.beginDraw();
   sendGfx.background(0);
   sendGfx.endDraw();
@@ -39,10 +40,10 @@ void draw() {
     sendGfx.beginDraw();
     sendGfx.fill(fillColor, 127);
     sendGfx.noStroke();
-    sendGfx.ellipse(mouseX, mouseY, 10, 10);
+    sendGfx.ellipse(mouseX/scaleFactor, mouseY/scaleFactor, 10, 10);
     sendGfx.stroke(fillColor);
     sendGfx.strokeWeight(2);
-    sendGfx.line(mouseX, mouseY, pmouseX, pmouseY);
+    sendGfx.line(mouseX/scaleFactor, mouseY/scaleFactor, pmouseX/scaleFactor, pmouseY/scaleFactor);
     sendGfx.endDraw();
     oscSend();
   }
