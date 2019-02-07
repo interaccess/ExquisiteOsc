@@ -1,15 +1,10 @@
 PGraphics receiveGfx;
 PGraphics sendGfx;
 color fillColor;
-Settings settings;
-int sW = 960;
-int sH = 540;
 int scaleFactor = 2;
 
 void setup() {
-  size(50, 50, P2D);
-  settings = new Settings("settings.txt");
-  surface.setSize(sW, sH);
+  size(960, 540, P2D);
   
   oscSetup();
   
