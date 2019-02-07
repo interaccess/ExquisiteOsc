@@ -9,8 +9,5 @@ void keyPressed() {
     case('c'): // color
       fillColor = randomColor();
       break;
-    case('s'): // screencap
-      screenShot(true);
-      break;
   }
 }

@@ -2,6 +2,8 @@ PGraphics receiveGfx;
 PGraphics sendGfx;
 color fillColor;
 int scaleFactor = 2;
+int sendFrequency = 1000;
+int markTime = 0;
 
 void setup() {
   size(960, 540, P2D);
@@ -47,10 +49,12 @@ void draw() {
 
   image(sendGfx, 0, 0, width, height);
   
-  oscSend();
-  
-  if (doRecord) screenShot(false);
-    
+  int t = millis();
+  if (t > markTime + sendFrequency) {
+    oscSend();
+    markTime = t;
+  }
+      
   surface.setTitle("" + frameRate);  
 }
 
