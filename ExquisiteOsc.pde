@@ -40,13 +40,14 @@ void draw() {
     sendGfx.strokeWeight(2);
     sendGfx.line(mouseX/scaleFactor, mouseY/scaleFactor, pmouseX/scaleFactor, pmouseY/scaleFactor);
     sendGfx.endDraw();
-    oscSend();
   }
   
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 
   image(sendGfx, 0, 0, width, height);
+  
+  if (mousePressed) oscSend();
   
   if (doRecord) screenShot(false);
     

@@ -31,7 +31,7 @@ void oscEvent(OscMessage msg) {
 
 void oscSend() {
   try {
-    sendBytes = encodeJpeg(sendGfx.get());
+    sendBytes = encodeJpeg(get());
   } catch (Exception e) { }
     
   OscMessage msg;
