@@ -47,7 +47,7 @@ void draw() {
 
   image(sendGfx, 0, 0, width, height);
   
-  if (mousePressed) oscSend();
+  oscSend();
   
   if (doRecord) screenShot(false);
     

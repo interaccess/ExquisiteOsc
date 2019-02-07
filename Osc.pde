@@ -4,9 +4,9 @@ import netP5.*;
 byte[] sendBytes = null;
 byte[] receiveBytes = null;
 
-String ipNumber = "127.0.0.1";
-int sendPort = 7110;
-int receivePort = 7111;
+String ipNumber = "192.168.0.107";
+int sendPort = 7111;
+int receivePort = 7110;
 
 OscP5 oscP5;
 NetAddress myRemoteLocation;
