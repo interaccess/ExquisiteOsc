@@ -12,15 +12,16 @@ function draw() {
 	fill(0, 255, 0);
 	ellipse(x, y, 100, 100);
 	fill(0);
-	text("I'm p5.js", x-25, y);
+	//text("I'm p5.js", x-25, y);
 
 	var img = get();
 	img.loadPixels();
-	var imgArray = new Uint8ClampedArray(img.pixels.length * 3);
-	for (var i=0; i<imgArray.length; i+=3) {
-		imgArray[i] = red(img.pixels[i]);
-		imgArray[i+1] = green(img.pixels[i]);
-		imgArray[i+2] = blue(img.pixels[i]);
-	}
+
+	img.pixels[44] = color(255,0,0);
+	img.pixels[45] = color(255,0,0);
+	img.pixels[46] = color(255,0,0);
+	img.pixels[47] = color(255,0,0);
+	img.updatePixels();
+	image(img, 0, 0);
 }
 
