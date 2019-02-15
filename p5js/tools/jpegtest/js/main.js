@@ -1,4 +1,7 @@
-var x, y;
+"use strict";
+
+var x = 250;
+var y = 250;
 
 function setup() {
 	createCanvas(500, 500);
@@ -13,6 +16,11 @@ function draw() {
 
 	var img = get();
 	img.loadPixels();
-	var img2 = encode(img.pixels);
+	var imgArray = new Uint8ClampedArray(img.pixels.length * 3);
+	for (var i=0; i<imgArray.length; i+=3) {
+		imgArray[i] = red(img.pixels[i]);
+		imgArray[i+1] = green(img.pixels[i]);
+		imgArray[i+2] = blue(img.pixels[i]);
+	}
 }
 
