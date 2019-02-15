@@ -26,6 +26,8 @@ function draw() {
 	
 	updatePixels();
 
+	let img = encode(pixels.buffer);
+
 	fill(0, 255, 0);
 	ellipse(x, y, 100, 100);
 }
